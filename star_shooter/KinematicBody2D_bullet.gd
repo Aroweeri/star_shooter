@@ -20,4 +20,8 @@ func set_velocity(_velocity):
 func _process(delta):
 	var collision = move_and_collide(velocity)
 	if collision:
-		get_parent().remove_child(self)
+		if collision.collider.is_in_group("stars"):
+			get_parent().remove_child(self)
+			collision.collider.queue_free()
+		if collision.collider.is_in_group("boundaries"):
+			get_parent().remove_child(self)

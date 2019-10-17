@@ -15,4 +15,11 @@ var velocity
 #	pass
 
 func _process(delta):
-	position += velocity
+	var collision = move_and_collide(velocity)
+	if collision:
+		if collision.collider.is_in_group("boundaries"):
+			get_parent().remove_child(self)
+		if collision.collider.is_in_group("bullets"):
+			get_parent().remove_child(self)
+			collision.collider.get_parent().remove_child(self)
+		
