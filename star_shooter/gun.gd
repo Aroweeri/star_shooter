@@ -18,6 +18,6 @@ func _input(event):
 			var bulletscene = load("res://KinematicBody2D_bullet.tscn")
 			var bullet = bulletscene.instance()
 			bullet.get_node("bullet").look_at(get_global_mouse_position())
-			#bullet.position = get_node("/root/world/gun_node/Position2D").position
+			bullet.position = get_parent().get_node("muzzle").global_position
+			bullet.set_velocity(Vector2(0,-7).rotated(global_rotation))
 			get_node("/root/world").add_child(bullet)
-			print("hi")

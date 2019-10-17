@@ -4,6 +4,8 @@ extends KinematicBody2D
 # var a = 2
 # var b = "text"
 
+var velocity = Vector2()
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -12,5 +14,8 @@ func _ready():
 #func _process(delta):
 #	pass
 
+func set_velocity(_velocity):
+	velocity = _velocity
+
 func _process(delta):
-	move_and_collide(Vector2(5,0))
+	position += velocity
