@@ -18,4 +18,6 @@ func set_velocity(_velocity):
 	velocity = _velocity
 
 func _process(delta):
-	position += velocity
+	var collision = move_and_collide(velocity)
+	if collision:
+		get_parent().remove_child(self)
