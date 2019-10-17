@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://KinematicBody2D_star.gd" type="Script" id=1]
+[ext_resource path="res://star.png" type="Texture" id=2]
+[ext_resource path="res://Light2D.gd" type="Script" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+
+[node name="KinematicBody2D_star" type="KinematicBody2D"]
+position = Vector2( -164.844, 12.3137 )
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -2.05113, -0.315559 )
+scale = Vector2( 2, 2 )
+shape = SubResource( 1 )
+
+[node name="Light2D" type="Light2D" parent="."]
+texture = ExtResource( 2 )
+texture_scale = 0.3
+color = Color( 0.372549, 0.541176, 1, 1 )
+energy = 1.97
+script = ExtResource( 3 )
