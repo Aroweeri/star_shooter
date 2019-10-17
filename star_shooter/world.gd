@@ -17,7 +17,7 @@ var rng = RandomNumberGenerator.new()
 #	pass
 func _process(delta):
 	starTimer+=delta
-	if(starTimer >= 1):
+	if(starTimer >= 0.1):
 		starTimer = 0
 		var newStarScene = load("res://KinematicBody2D_star.tscn")
 		var newStar = newStarScene.instance()
@@ -38,5 +38,10 @@ func _process(delta):
 			newStar.position = Vector2(bottomAreaX, bottomAreaY)
 		elif randomSide == 4:
 			newStar.position = Vector2(leftAreaX, leftAreaY)
-		newStar.velocity = Vector2(rng.randf_range(-10,10), rng.randf_range(-10,10))
+		var angleAdjustment = rng.randf_range(0.25,0.7)
+		if rng.randi_range(1,2) == 1:
+			angleAdjustment *= -1
+		newStar.velocity = Vector2(cos(newStar.position.direction_to(self.position).angle() + angleAdjustment), sin(newStar.position.direction_to(self.position).angle() + angleAdjustment))
+		newStar.velocity *= rng.randf_range(3,8)
+		
 		self.add_child(newStar)
