@@ -24,7 +24,7 @@ func _input(event):
 			var bulletscene = load("res://KinematicBody2D_bullet.tscn")
 			var bullet = bulletscene.instance()
 			bullet.rotation = global_rotation
-			bullet.position = get_parent().get_node("muzzle").global_position
+			bullet.position = get_parent().get_node("muzzle").position.rotated(get_parent().get_node("muzzle").global_rotation)
 			bullet.set_velocity(Vector2(7,0).rotated(global_rotation))
 			bullet.connect("starDestroyed", self, "_starDestroyed")
 			emit_signal("removeEnergy")

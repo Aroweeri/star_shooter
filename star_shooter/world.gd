@@ -47,7 +47,10 @@ func _process(delta):
 	if(energy == 0):
 		global.time = time
 		global.hits = hits
-		global.accuracy = stepify(float(hits)/float(bulletsShot)*100, 0.01)
+		if(hits == 0):
+			global.accuracy = 0
+		else:
+			global.accuracy = stepify(float(hits)/float(bulletsShot)*100, 0.01)
 		get_tree().change_scene("res://game_over.tscn")
 		var root = get_tree().get_root()
 		var level = root.get_node("world")
@@ -81,7 +84,7 @@ func _process(delta):
 		var angleAdjustment = rng.randf_range(0.25,0.7)
 		if rng.randi_range(1,2) == 1:
 			angleAdjustment *= -1
-		newStar.velocity = Vector2(cos(newStar.position.direction_to(self.position).angle() + angleAdjustment), sin(newStar.position.direction_to(self.position).angle() + angleAdjustment))
+		newStar.velocity = Vector2(cos(newStar.position.direction_to(Vector2(0,0)).angle() + angleAdjustment), sin(newStar.position.direction_to(Vector2(0,0)).angle() + angleAdjustment))
 		newStar.velocity *= rng.randf_range(1,4) + difficulty
 		newStar.connect("collidedWithBullet", self, "_addEnergy")
 		
