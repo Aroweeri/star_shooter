@@ -8,9 +8,15 @@ extends Sprite
 func _ready():
 	pass # Replace with function body.
 
+signal addEnergy
+signal removeEnergy
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+func _starDestroyed():
+	emit_signal("addEnergy")
 
 func _input(event):
 	if event is InputEventMouseButton:
@@ -20,4 +26,6 @@ func _input(event):
 			bullet.get_node("bullet").look_at(get_global_mouse_position())
 			bullet.position = get_parent().get_node("muzzle").global_position
 			bullet.set_velocity(Vector2(0,-7).rotated(global_rotation))
+			bullet.connect("starDestroyed", self, "_starDestroyed")
+			emit_signal("removeEnergy")
 			get_node("/root/world").add_child(bullet)

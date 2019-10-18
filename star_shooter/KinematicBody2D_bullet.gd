@@ -14,6 +14,8 @@ func _ready():
 #func _process(delta):
 #	pass
 
+signal starDestroyed
+
 func set_velocity(_velocity):
 	velocity = _velocity
 
@@ -23,5 +25,7 @@ func _process(delta):
 		if collision.collider.is_in_group("stars"):
 			get_parent().remove_child(self)
 			collision.collider.queue_free()
+			emit_signal("starDestroyed")
+			print("signal emitted")
 		if collision.collider.is_in_group("boundaries"):
 			get_parent().remove_child(self)

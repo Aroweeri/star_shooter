@@ -8,16 +8,32 @@ extends Node2D
 func _ready():
 	rng.randomize()
 	pass # Replace with function body.
+	get_node("gun_node/gun").connect("addEnergy", self, "_addEnergy")
+	get_node("gun_node/gun").connect("removeEnergy", self, "_removeEnergy")
+	$energy.text = str(energy)
+	
+func _addEnergy():
+	energy+=5
+	
+func _removeEnergy():
+	energy-=1
 
 var starTimer = 0
+var energyTimer = 0
 var rng = RandomNumberGenerator.new()
+var energy = 20
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
 func _process(delta):
+	$energy.text = str(energy)
 	starTimer+=delta
-	if(starTimer >= 0.1):
+	energyTimer+=delta
+	if(energyTimer >= 1):
+		energy-=1
+		energyTimer = 0;
+	if(starTimer >= 0.4):
 		starTimer = 0
 		var newStarScene = load("res://KinematicBody2D_star.tscn")
 		var newStar = newStarScene.instance()

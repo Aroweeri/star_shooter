@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://world.gd" type="Script" id=1]
 [ext_resource path="res://space_background.png" type="Texture" id=2]
@@ -6,9 +6,14 @@
 [ext_resource path="res://gun_node.gd" type="Script" id=4]
 [ext_resource path="res://gun.png" type="Texture" id=5]
 [ext_resource path="res://gun.gd" type="Script" id=6]
+[ext_resource path="res://Roboto-Regular.ttf" type="DynamicFontData" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 1755.9, 10 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 40
+font_data = ExtResource( 7 )
 
 [node name="world" type="Node2D"]
 script = ExtResource( 1 )
@@ -101,3 +106,19 @@ position = Vector2( -1726.35, -992.305 )
 
 [node name="Position2D_left_2" type="Position2D" parent="."]
 position = Vector2( -1066.63, 1405.05 )
+
+[node name="energyLabel" type="Label" parent="."]
+margin_left = -747.744
+margin_top = -432.478
+margin_right = -558.744
+margin_bottom = -352.478
+custom_fonts/font = SubResource( 2 )
+text = "ENERGY:"
+
+[node name="energy" type="Label" parent="."]
+margin_left = -574.11
+margin_top = -431.281
+margin_right = -385.11
+margin_bottom = -351.281
+custom_fonts/font = SubResource( 2 )
+text = "0"
