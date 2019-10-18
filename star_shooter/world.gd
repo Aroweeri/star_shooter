@@ -13,7 +13,7 @@ func _ready():
 	$energy.text = str(energy)
 	
 func _addEnergy():
-	energy+=5
+	energy+=4
 	
 func _removeEnergy():
 	energy-=1
@@ -23,6 +23,7 @@ var energyTimer = 0
 var rng = RandomNumberGenerator.new()
 var energy = 20
 var time = 0
+var difficulty = 1
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -46,8 +47,9 @@ func _process(delta):
 		var nextScene = load("res://game_over.tscn").instance()
 		root.add_child(nextScene)
 		
-		
-	if(starTimer >= 0.4):
+	print(difficulty)
+	if(starTimer >= 0.3):
+		difficulty+=0.01
 		starTimer = 0
 		var newStarScene = load("res://KinematicBody2D_star.tscn")
 		var newStar = newStarScene.instance()
@@ -72,6 +74,6 @@ func _process(delta):
 		if rng.randi_range(1,2) == 1:
 			angleAdjustment *= -1
 		newStar.velocity = Vector2(cos(newStar.position.direction_to(self.position).angle() + angleAdjustment), sin(newStar.position.direction_to(self.position).angle() + angleAdjustment))
-		newStar.velocity *= rng.randf_range(3,8)
+		newStar.velocity *= rng.randf_range(1,4) + difficulty
 		
 		self.add_child(newStar)
