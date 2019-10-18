@@ -23,7 +23,7 @@ func _input(event):
 		if event.button_index == BUTTON_LEFT and event.pressed:
 			var bulletscene = load("res://KinematicBody2D_bullet.tscn")
 			var bullet = bulletscene.instance()
-			bullet.get_node("bullet").look_at(get_global_mouse_position())
+			bullet.rotation = global_rotation + PI/2
 			bullet.position = get_parent().get_node("muzzle").global_position
 			bullet.set_velocity(Vector2(0,-7).rotated(global_rotation))
 			bullet.connect("starDestroyed", self, "_starDestroyed")
