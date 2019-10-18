@@ -36,6 +36,17 @@ func _process(delta):
 	if(energyTimer >= 1):
 		energy-=1
 		energyTimer = 0;
+	if(energy == 0):
+		global.score = time
+		get_tree().change_scene("res://game_over.tscn")
+		var root = get_tree().get_root()
+		var level = root.get_node("world")
+		root.remove_child(level)
+		level.call_deferred("free")
+		var nextScene = load("res://game_over.tscn").instance()
+		root.add_child(nextScene)
+		
+		
 	if(starTimer >= 0.4):
 		starTimer = 0
 		var newStarScene = load("res://KinematicBody2D_star.tscn")
