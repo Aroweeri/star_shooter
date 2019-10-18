@@ -14,6 +14,8 @@ func _ready():
 	
 func _addEnergy():
 	energy+=4
+	if(energy > 30):
+		energy = 30
 	
 func _removeEnergy():
 	energy-=1
@@ -47,8 +49,7 @@ func _process(delta):
 		var nextScene = load("res://game_over.tscn").instance()
 		root.add_child(nextScene)
 		
-	print(difficulty)
-	if(starTimer >= 0.3):
+	if(starTimer >= 0.1):
 		difficulty+=0.01
 		starTimer = 0
 		var newStarScene = load("res://KinematicBody2D_star.tscn")
@@ -75,5 +76,6 @@ func _process(delta):
 			angleAdjustment *= -1
 		newStar.velocity = Vector2(cos(newStar.position.direction_to(self.position).angle() + angleAdjustment), sin(newStar.position.direction_to(self.position).angle() + angleAdjustment))
 		newStar.velocity *= rng.randf_range(1,4) + difficulty
+		newStar.connect("collidedWithBullet", self, "_addEnergy")
 		
 		self.add_child(newStar)

@@ -10,6 +10,8 @@ func _ready():
 	
 var velocity
 
+signal collidedWithBullet
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
@@ -20,6 +22,7 @@ func _process(delta):
 		if collision.collider.is_in_group("boundaries"):
 			get_parent().remove_child(self)
 		if collision.collider.is_in_group("bullets"):
+			emit_signal("collidedWithBullet")
+			collision.collider.queue_free()
 			get_parent().remove_child(self)
-			collision.collider.get_parent().remove_child(self)
 		

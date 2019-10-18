@@ -5,7 +5,9 @@
 
 [sub_resource type="CapsuleShape2D" id=1]
 
-[node name="KinematicBody2D_bullet" type="KinematicBody2D"]
+[node name="KinematicBody2D_bullet" type="KinematicBody2D" groups=[
+"bullets",
+]]
 collision_mask = 3
 script = ExtResource( 1 )
 
