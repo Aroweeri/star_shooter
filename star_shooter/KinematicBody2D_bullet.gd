@@ -26,6 +26,5 @@ func _process(delta):
 			get_parent().remove_child(self)
 			collision.collider.queue_free()
 			emit_signal("starDestroyed")
-			print("signal emitted")
 		if collision.collider.is_in_group("boundaries"):
 			get_parent().remove_child(self)

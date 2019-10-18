@@ -22,14 +22,17 @@ var starTimer = 0
 var energyTimer = 0
 var rng = RandomNumberGenerator.new()
 var energy = 20
+var time = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
 func _process(delta):
 	$energy.text = str(energy)
+	$time.text = str(int(time))
 	starTimer+=delta
 	energyTimer+=delta
+	time+=delta
 	if(energyTimer >= 1):
 		energy-=1
 		energyTimer = 0;

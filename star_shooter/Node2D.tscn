@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://world.gd" type="Script" id=1]
 [ext_resource path="res://space_background.png" type="Texture" id=2]
@@ -12,6 +12,10 @@
 extents = Vector2( 1755.9, 10 )
 
 [sub_resource type="DynamicFont" id=2]
+size = 40
+font_data = ExtResource( 7 )
+
+[sub_resource type="DynamicFont" id=3]
 size = 40
 font_data = ExtResource( 7 )
 
@@ -122,3 +126,20 @@ margin_right = -385.11
 margin_bottom = -351.281
 custom_fonts/font = SubResource( 2 )
 text = "0"
+
+[node name="timeLabel" type="Label" parent="."]
+margin_left = -746.571
+margin_top = -380.801
+margin_right = -643.571
+margin_bottom = -332.801
+custom_fonts/font = SubResource( 3 )
+text = "TIME:"
+
+[node name="time" type="Label" parent="."]
+margin_left = -573.671
+margin_top = -378.901
+margin_right = -470.671
+margin_bottom = -279.901
+custom_fonts/font = SubResource( 3 )
+text = "0
+"
