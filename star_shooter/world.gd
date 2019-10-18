@@ -10,12 +10,13 @@ func _ready():
 	pass # Replace with function body.
 	get_node("gun_node/gun").connect("addEnergy", self, "_addEnergy")
 	get_node("gun_node/gun").connect("removeEnergy", self, "_removeEnergy")
-	$energy.text = str(energy)
+	$energy.text = str(energy) + "/" + str(maxEnergy)
 	
 func _addEnergy():
+	hits+=1
 	energy+=4
-	if(energy > 30):
-		energy = 30
+	if(energy > maxEnergy):
+		energy = maxEnergy
 	
 func _removeEnergy():
 	energy-=1
@@ -26,12 +27,14 @@ var rng = RandomNumberGenerator.new()
 var energy = 20
 var time = 0
 var difficulty = 1
+var hits = 0
+var maxEnergy = 40
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
 func _process(delta):
-	$energy.text = str(energy)
+	$energy.text = str(energy) + "/" + str(maxEnergy)
 	$time.text = str(int(time))
 	starTimer+=delta
 	energyTimer+=delta
@@ -40,7 +43,8 @@ func _process(delta):
 		energy-=1
 		energyTimer = 0;
 	if(energy == 0):
-		global.score = time
+		global.time = time
+		global.hits = hits
 		get_tree().change_scene("res://game_over.tscn")
 		var root = get_tree().get_root()
 		var level = root.get_node("world")
@@ -49,7 +53,7 @@ func _process(delta):
 		var nextScene = load("res://game_over.tscn").instance()
 		root.add_child(nextScene)
 		
-	if(starTimer >= 0.1):
+	if(starTimer >= 0.3):
 		difficulty+=0.01
 		starTimer = 0
 		var newStarScene = load("res://KinematicBody2D_star.tscn")

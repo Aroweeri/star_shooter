@@ -120,10 +120,10 @@ custom_fonts/font = SubResource( 2 )
 text = "ENERGY:"
 
 [node name="energy" type="Label" parent="."]
-margin_left = -574.11
-margin_top = -431.281
-margin_right = -385.11
-margin_bottom = -351.281
+margin_left = -574.0
+margin_top = -431.0
+margin_right = -48.0
+margin_bottom = -351.0
 custom_fonts/font = SubResource( 2 )
 text = "0"
 
@@ -136,10 +136,10 @@ custom_fonts/font = SubResource( 3 )
 text = "TIME:"
 
 [node name="time" type="Label" parent="."]
-margin_left = -573.671
-margin_top = -378.901
-margin_right = -470.671
-margin_bottom = -279.901
+margin_left = -574.0
+margin_top = -379.0
+margin_right = -66.0
+margin_bottom = -280.0
 custom_fonts/font = SubResource( 3 )
 text = "0
 "
