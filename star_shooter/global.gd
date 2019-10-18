@@ -10,6 +10,7 @@ func _ready():
 	
 var hits
 var time
+var accuracy
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

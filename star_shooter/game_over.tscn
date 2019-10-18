@@ -28,6 +28,14 @@ margin_bottom = 80.3089
 custom_fonts/font = SubResource( 1 )
 text = "TIME:"
 
+[node name="accuracyLabel" type="Label" parent="."]
+margin_left = 270.537
+margin_top = 127.477
+margin_right = 396.537
+margin_bottom = 175.477
+custom_fonts/font = SubResource( 1 )
+text = "ACC:"
+
 [node name="hitsLabel" type="Label" parent="."]
 margin_left = 270.696
 margin_top = 80.4941
@@ -44,11 +52,19 @@ margin_bottom = 80.3089
 custom_fonts/font = SubResource( 1 )
 text = "0"
 
+[node name="accuracy" type="Label" parent="."]
+margin_left = 426.041
+margin_top = 130.049
+margin_right = 552.041
+margin_bottom = 178.049
+custom_fonts/font = SubResource( 1 )
+text = "0"
+
 [node name="hits" type="Label" parent="."]
-margin_left = 424.486
-margin_top = 83.9858
-margin_right = 550.486
-margin_bottom = 131.986
+margin_left = 426.201
+margin_top = 82.2711
+margin_right = 552.201
+margin_bottom = 130.271
 custom_fonts/font = SubResource( 1 )
 text = "0"
 

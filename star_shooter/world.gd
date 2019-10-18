@@ -20,6 +20,7 @@ func _addEnergy():
 	
 func _removeEnergy():
 	energy-=1
+	bulletsShot+=1
 
 var starTimer = 0
 var energyTimer = 0
@@ -29,6 +30,7 @@ var time = 0
 var difficulty = 1
 var hits = 0
 var maxEnergy = 40
+var bulletsShot = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -45,6 +47,7 @@ func _process(delta):
 	if(energy == 0):
 		global.time = time
 		global.hits = hits
+		global.accuracy = stepify(float(hits)/float(bulletsShot)*100, 0.01)
 		get_tree().change_scene("res://game_over.tscn")
 		var root = get_tree().get_root()
 		var level = root.get_node("world")

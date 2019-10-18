@@ -8,6 +8,7 @@ extends Control
 func _ready():
 	$time.text = str(int(global.time))
 	$hits.text = str(int(global.hits))
+	$accuracy.text = str(global.accuracy) + "%"
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
