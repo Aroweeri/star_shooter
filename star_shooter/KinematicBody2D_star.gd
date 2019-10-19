@@ -9,6 +9,7 @@ func _process(delta):
 		if collision.collider.is_in_group("boundaries"):
 			get_parent().remove_child(self)
 		if collision.collider.is_in_group("bullets"):
+			#delete bullet and star and send signal
 			emit_signal("collidedWithBullet")
 			collision.collider.queue_free()
 			get_parent().remove_child(self)

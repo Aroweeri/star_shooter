@@ -10,6 +10,7 @@ func _process(delta):
 	var collision = move_and_collide(velocity)
 	if collision:
 		if collision.collider.is_in_group("stars"):
+			#delete bullet and star and send signal
 			get_parent().remove_child(self)
 			collision.collider.queue_free()
 			emit_signal("starDestroyed")

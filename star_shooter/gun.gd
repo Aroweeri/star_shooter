@@ -6,6 +6,7 @@ signal removeEnergy
 func _starDestroyed():
 	emit_signal("addEnergy")
 
+#create a bullet on mouse click
 func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT and event.pressed:

@@ -1,6 +1,7 @@
 extends Button
 
 func _pressed():
+	#change scenes
 	var root = get_tree().get_root()
 	var level = root.get_node("Control")
 	root.remove_child(level)
