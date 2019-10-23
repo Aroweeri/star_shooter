@@ -2,7 +2,6 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	rng.randomize()
 	get_node("gun_node/gun").connect("addEnergy", self, "_addEnergy")
 	get_node("gun_node/gun").connect("removeEnergy", self, "_removeEnergy")
 	$energy.text = str(energy) + "/" + str(maxEnergy) #Initialize energy label text
@@ -20,7 +19,6 @@ func _removeEnergy():
 
 var starTimer = 0    #When this reaches a certain value, a new star is instanced
 var energyTimer = 0  #Used to remove one energy every second
-var rng = RandomNumberGenerator.new()
 var energy = 20      #default energy amount. When the player runs out the game ends.
 var time = 0         #current playtime
 var difficulty = 1   #speed multiplier for the star's velocity
@@ -63,15 +61,15 @@ func _process(delta):
 		#create new star
 		var newStarScene = load("res://KinematicBody2D_star.tscn")
 		var newStar = newStarScene.instance()
-		var randomSide = rng.randi_range(1,4) #pick a side of the stage to generate a star on
-		var topAreaX = rng.randi_range(get_node("Position2D_top_1").position.x, get_node("Position2D_top_2").position.x)
-		var topAreaY = rng.randi_range(get_node("Position2D_top_1").position.y, get_node("Position2D_top_2").position.y)
-		var rightAreaX = rng.randi_range(get_node("Position2D_right_1").position.x, get_node("Position2D_right_2").position.x)
-		var rightAreaY = rng.randi_range(get_node("Position2D_right_1").position.y, get_node("Position2D_right_2").position.y)
-		var bottomAreaX = rng.randi_range(get_node("Position2D_bottom_1").position.x, get_node("Position2D_bottom_2").position.x)
-		var bottomAreaY = rng.randi_range(get_node("Position2D_bottom_1").position.y, get_node("Position2D_bottom_2").position.y)
-		var leftAreaX = rng.randi_range(get_node("Position2D_left_1").position.x, get_node("Position2D_left_2").position.x)
-		var leftAreaY = rng.randi_range(get_node("Position2D_left_1").position.y, get_node("Position2D_left_2").position.y)
+		var randomSide = global.rng.randi_range(1,4) #pick a side of the stage to generate a star on
+		var topAreaX = global.rng.randi_range(get_node("Position2D_top_1").position.x, get_node("Position2D_top_2").position.x)
+		var topAreaY = global.rng.randi_range(get_node("Position2D_top_1").position.y, get_node("Position2D_top_2").position.y)
+		var rightAreaX = global.rng.randi_range(get_node("Position2D_right_1").position.x, get_node("Position2D_right_2").position.x)
+		var rightAreaY = global.rng.randi_range(get_node("Position2D_right_1").position.y, get_node("Position2D_right_2").position.y)
+		var bottomAreaX = global.rng.randi_range(get_node("Position2D_bottom_1").position.x, get_node("Position2D_bottom_2").position.x)
+		var bottomAreaY = global.rng.randi_range(get_node("Position2D_bottom_1").position.y, get_node("Position2D_bottom_2").position.y)
+		var leftAreaX = global.rng.randi_range(get_node("Position2D_left_1").position.x, get_node("Position2D_left_2").position.x)
+		var leftAreaY = global.rng.randi_range(get_node("Position2D_left_1").position.y, get_node("Position2D_left_2").position.y)
 		if randomSide == 1:
 			newStar.position = Vector2(topAreaX, topAreaY)
 		elif randomSide == 2:
@@ -82,11 +80,11 @@ func _process(delta):
 			newStar.position = Vector2(leftAreaX, leftAreaY)
 			
 		#angleAdjustment to make sure stars miss the asteroid every time. They can go to the left or right of it
-		var angleAdjustment = rng.randf_range(0.25,0.7)
-		if rng.randi_range(1,2) == 1: #two sided die
+		var angleAdjustment = global.rng.randf_range(0.25,0.7)
+		if global.rng.randi_range(1,2) == 1: #two sided die
 			angleAdjustment *= -1
 		newStar.velocity = Vector2(cos(newStar.position.direction_to(Vector2(0,0)).angle() + angleAdjustment), sin(newStar.position.direction_to(Vector2(0,0)).angle() + angleAdjustment))
-		newStar.velocity *= rng.randf_range(1,4) + difficulty
+		newStar.velocity *= global.rng.randf_range(1,4) + difficulty
 		newStar.connect("collidedWithBullet", self, "_addEnergy")
 		
 		self.add_child(newStar)
