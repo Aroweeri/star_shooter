@@ -17,8 +17,7 @@ position = Vector2( -2.05113, -0.315559 )
 scale = Vector2( 2, 2 )
 shape = SubResource( 1 )
 
-[node name="Light2D" type="Light2D" parent="."]
+[node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.435294 )
+scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 2 )
-texture_scale = 0.3
-color = Color( 0.372549, 0.541176, 1, 1 )
-energy = 1.97
